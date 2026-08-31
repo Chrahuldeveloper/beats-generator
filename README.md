@@ -1,1 +1,1 @@
-beats generator using RNN
+beats generator using DeepLearning
