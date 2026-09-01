@@ -2,6 +2,10 @@ from pyppeteer import launch
 import asyncio
 import pandas as pd
 import os 
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 async def main():
 
@@ -27,8 +31,8 @@ async def main():
             'https://www.looperman.com/account/login',
         )
 
-        await page.type("#user_email", "chrahulofficial@gmail.com")
-        await page.type("#upass", "Lovecoding@143")
+        await page.type("#user_email",os.getenv("MAIL"))
+        await page.type("#upass", os.getenv("PASS"))
 
         await page.click('#user_disclaimer')
         await page.click("#user_remember_code")
