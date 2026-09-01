@@ -1,94 +1,22 @@
-from pyppeteer import launch
-import asyncio
-import pandas as pd
-import os 
-from dotenv import load_dotenv
+import requests
+import csv
+from pathlib import Path
 
+Path("beats").mkdir(exist_ok=True)
 
-load_dotenv()
+with open("links.csv", "r", encoding="utf-8") as file:
+    reader = csv.DictReader(file)
 
-async def main():
+    for i, row in enumerate(reader, 1):
+        url = row["links"]
 
-    browser = None
+        print("Downloading:", url)
 
-    try:
-        os.makedirs("./beats", exist_ok=True)
+        r = requests.get(url, timeout=60)
 
-        browser = await launch(headless=True)
-
-        page = await browser.newPage()
-
-
-        await page._client.send(
-            "Page.setDownloadBehavior",
-            {
-                "behavior": "allow",
-                "downloadPath": os.path.abspath("./beats")
-            }
-        )
-
-        await page.goto(
-            'https://www.looperman.com/account/login',
-        )
-
-        await page.type("#user_email",os.getenv("MAIL"))
-        await page.type("#upass", os.getenv("PASS"))
-
-        await page.click('#user_disclaimer')
-        await page.click("#user_remember_code")
-        await page.click("#submit")
-
-        print("clicked")
-
-        if "account/login" not in page.url:
-            print("logged in")
+        if r.status_code == 200:
+            output = Path("beats") / f"beat_{i}.mp3"
+            output.write_bytes(r.content)
+            print("saved",output)
         else:
-            print("Login failed")   
-
-        df = pd.read_csv("./links.csv")
-
-        for link in df.iloc[:, 0]:
-
-            link = str(link).strip()
-
-            print("Opening:", link)
-
-            try:
-                await page.goto(
-                    link,
-                    {
-                        "waitUntil": "domcontentloaded",
-                        "timeout": 60000
-                    }
-                )
-
-                await page.waitForSelector(
-                    'a[data-bs-title="Download this item"]',
-                    {
-                        "timeout": 60000
-                    }
-                )
-
-                btn = await page.querySelector(
-                    'a[data-bs-title="Download this item"]'
-                )
-
-                await btn.click()
-
-                await asyncio.sleep(3)
-
-                print("Downloaded:", link)
-
-            except Exception as e:
-                print("Failed:", link)
-                print("Error:", e)
-
-    except Exception as e:
-        print("Error:", e)
-
-    finally:
-        if browser:
-            await browser.close()
-
-
-asyncio.run(main())
+            print("Failed:", r.status_code)
