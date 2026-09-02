@@ -58,10 +58,6 @@ for file in files:
 
     avg_energy = float(rms.mean())
 
-    print('bpm' , float(tempo[0]))
-    print('beat_timestamps' , beat_timestamps)
-    print('onset_times' , onset_times)
-    print('energy', avg_energy)
     events = []
     
     for onset_time in onset_times:
