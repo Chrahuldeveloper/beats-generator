@@ -5,7 +5,6 @@ files = Path("./beats").glob("*")
 import json
 import os
 
-
 # based on freq taken from my sound samples 
 samples = {
     "SNARE": 168.46,
@@ -39,6 +38,7 @@ for file in files:
         beat_frames,
         sr=sr
     )
+
     onset_frames = librosa.onset.onset_detect(
     y=y,
     sr=sr
@@ -98,19 +98,16 @@ for file in files:
 
     beat_data = {
         "file": file.name,
-
         "metadata": {
-            "bpm": round(tempo[0], 2),
+            "bpm": round(float(np.asarray(tempo).flat[0]), 1),
             "duration": round(duration, 3),
             "sample_rate": sr,
             "energy": round(avg_energy, 6)
         },
-
         "beats": [
             round(float(t), 3)
             for t in beat_timestamps
         ],
-
         "events": events
     }
 
