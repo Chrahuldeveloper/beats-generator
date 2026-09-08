@@ -1,3 +1,1 @@
 
-Beats generator using RNN
-
