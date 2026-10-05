@@ -1,6 +1,5 @@
 import pandas as pd
 import json
-import os
 from pathlib import Path
 
 metadata_path = Path(
