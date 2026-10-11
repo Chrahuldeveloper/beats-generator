@@ -34,3 +34,5 @@ while True:
         time.sleep(beat_time)                
 
 # take user input add ml according to that to predict patters for the beats 
+
+
