@@ -1,7 +1,6 @@
 from pathlib import Path
 import librosa
 import numpy as np
-files = Path("./beats").glob("*")
 import json
 import os
 
@@ -24,10 +23,22 @@ samples = {
 
 os.makedirs("./metadata", exist_ok=True)
 
+BASE_DIR = Path(__file__).resolve().parent
+BEATS_DIR = BASE_DIR / "beats"
+METADATA_DIR = BASE_DIR / "metadata"
+
+files = BEATS_DIR.glob("*.mp3")
+
+METADATA_DIR.mkdir(parents=True, exist_ok=True)
+
 all_data = []
 
 for file in files:
     print(file)
+
+    if not file.is_file() or file.stat().st_size == 0:
+        continue
+
     y, sr = librosa.load(file)
     tempo , beat_frames = librosa.beat.beat_track(
         y=y,
@@ -111,7 +122,7 @@ for file in files:
         "events": events
     }
 
-    output_file = Path("./metadata") / f"{file.stem}.json"
+    output_file = METADATA_DIR / f"{file.stem}.json"
 
     with open(
         output_file,
