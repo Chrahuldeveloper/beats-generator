@@ -1,6 +1,5 @@
 # 🎵 AI Beat & Music Generator
 
-# 🎵 AI Beat & Music Generator — Backend
 
 <p align="center">
   <img src="images/banner.png" alt="AI Beat & Music Generator" width="100%" />
