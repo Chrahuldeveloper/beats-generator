@@ -28,13 +28,9 @@ export default function Player() {
     >
       <div className="relative flex h-full items-center px-3">
 
-        {/* =====================================================
-            LEFT — TRANSPORT
-        ====================================================== */}
 
         <div className="flex items-center gap-[7px]">
 
-          {/* Play */}
           <button
             onClick={() => setPlaying(!playing)}
             className={`
@@ -57,7 +53,6 @@ export default function Player() {
             />
           </button>
 
-          {/* Stop */}
           <button
             onClick={() => setPlaying(false)}
             className="
@@ -79,7 +74,6 @@ export default function Player() {
             />
           </button>
 
-          {/* Loop */}
           <button
             onClick={() => setLoop(!loop)}
             className={`
@@ -99,10 +93,6 @@ export default function Player() {
           </button>
         </div>
 
-        {/* =====================================================
-            CENTER — BPM / TIME
-        ====================================================== */}
-
         <div
           className="
             absolute
@@ -112,7 +102,6 @@ export default function Player() {
             items-center
           "
         >
-          {/* BPM */}
           <div className="flex items-baseline">
             <span className="text-[18px] font-medium tracking-[0.5px] text-[#e6e7e9]">
               128
@@ -123,10 +112,8 @@ export default function Player() {
             </span>
           </div>
 
-          {/* Divider */}
           <div className="mx-[22px] h-[20px] w-px bg-[#292d32]" />
 
-          {/* Time */}
           <div className="font-mono text-[12px] tracking-[0.5px]">
             <span className="text-[#e0e2e5]">
               00:00.00
@@ -142,13 +129,8 @@ export default function Player() {
           </div>
         </div>
 
-        {/* =====================================================
-            RIGHT — OUTPUT / VOLUME / CPU
-        ====================================================== */}
-
         <div className="ml-auto flex items-center gap-[18px]">
 
-          {/* Volume */}
           <div className="flex items-center gap-[8px]">
 
             <Volume2
@@ -158,10 +140,8 @@ export default function Player() {
             />
 
             <div className="relative h-[4px] w-[111px]">
-              {/* Track */}
               <div className="absolute inset-0 rounded-full bg-[#164b3f]" />
 
-              {/* Progress */}
               <div
                 className="absolute left-0 top-0 h-full rounded-full bg-[#00d99b]"
                 style={{
@@ -169,7 +149,6 @@ export default function Player() {
                 }}
               />
 
-              {/* Slider */}
               <input
                 type="range"
                 min="0"
@@ -216,7 +195,6 @@ export default function Player() {
             </span>
           </div>
 
-          {/* CPU */}
           <div className="flex items-center gap-[8px]">
 
             <Cpu
@@ -241,7 +219,6 @@ export default function Player() {
             </span>
           </div>
 
-          {/* Output */}
           <div className="flex items-center gap-[6px]">
 
             <LockKeyhole
