@@ -16,7 +16,6 @@ for metafile in meta_data:
             with open (sequencefile,"r") as f:
                 sequence = json.load(f)
 
-
             with open(Path("./training-data") / metafile.name, "w") as f:
                 json.dump({
                     "metadata": metadata,
