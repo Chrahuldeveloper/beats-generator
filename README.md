@@ -1,29 +1,29 @@
+# 🎵 AI Beat & Music Generator
 
-# 🎵 AI Beat & Music Generator — 
+# 🎵 AI Beat & Music Generator — Backend
 
 <p align="center">
-  <img src="images/banner.png" alt="AI Beat and Music Generator" width="100%" />
+  <img src="images/banner.png" alt="AI Beat & Music Generator" width="100%" />
 </p>
 
-Python FastAPI backend for an AI-powered beat and music generator. Generate musical patterns from natural-language descriptions and bring your ideas to life.
+An AI-powered music creation tool that turns natural-language descriptions into beats. Generate rhythms, experiment with 13 instruments, and edit patterns using an interactive beat sequencer.
 
-## 🚀 Tech Stack
+## ✨ Features
 
-- Python
-- FastAPI
-- PyTorch
+- 🤖 AI-powered beat generation from text descriptions
+- 🥁 13 instruments for creating rhythms
+- 🎛️ Interactive beat sequencer and pattern editing
+- ▶️ Beat playback and arrangement
+- 🎼 Song generation planned for future releases
 
-## ⚙️ Getting Started
+## 🛠️ Tech Stack
 
-```bash
-git clone <YOUR_REPOSITORY_URL>
-cd <PROJECT_DIRECTORY>
+- **Frontend:** Next.js, React, TypeScript
+- **Backend:** Python, FastAPI
+- **Machine Learning:** PyTorch
 
-python -m venv venv
-source venv/bin/activate
+## 🚀 Getting Started
 
-pip install -r requirements.txt
-uvicorn main:app --reload
-```
+Set up the frontend and backend using their respective dependencies and environment configurations.
 
-
+API documentation is available at `/docs` when the FastAPI backend is running.
