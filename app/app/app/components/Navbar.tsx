@@ -1,23 +1,18 @@
 "use client";
 
 import {
-  Minus,
-  Plus,
-  Undo2,
-  Redo2,
-  Save,
   Upload,
   Music2,
 } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <header className="h-[54px] w-full border-b border-[#292b30] bg-[#0d0f12] text-white">
+    <header className="h-13.5 w-full border-b border-[#292b30] bg-[#0d0f12] text-white">
       <div className="relative flex h-full items-center px-3">
 
         <div className="flex items-center gap-3">
-          <div className="flex h-[30px] w-[30px] items-center justify-center rounded-[9px] bg-[#19d3a2]">
-            <div className="relative flex h-[18px] w-[18px] items-center justify-center">
+          <div className="flex h-7.5 w-7.5 items-center justify-center rounded-[9px] bg-[#19d3a2]">
+            <div className="relative flex h-4.5 w-4.5 items-center justify-center">
               <Music2
                 size={17}
                 strokeWidth={2.5}
@@ -31,7 +26,7 @@ export default function Navbar() {
               BEATLAB
             </span>
 
-            <span className="rounded-[4px] border border-[#087c62] bg-[#0d2922] px-[5px] py-[1px] text-[9px] font-medium tracking-[1px] text-[#20d7a7]">
+            <span className="rounded-sm border border-[#087c62] bg-[#0d2922] px-1.25 py-px text-[9px] font-medium tracking-[1px] text-[#20d7a7]">
               AI
             </span>
           </div>
@@ -42,7 +37,7 @@ export default function Navbar() {
 
           <button
             className="
-              ml-1 flex h-[34px] items-center gap-2
+              ml-1 flex h-8.5 items-center gap-2
               rounded-[9px]
               border border-[#36383e]
               bg-[#17191d]
@@ -57,7 +52,7 @@ export default function Navbar() {
 
           <button
             className="
-              ml-2 flex h-[34px] w-[34px]
+              ml-2 flex h-8.5 w-8.5
               items-center justify-center
               rounded-full
               bg-[#1d2025]

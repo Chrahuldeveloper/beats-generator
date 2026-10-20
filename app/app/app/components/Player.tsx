@@ -20,7 +20,7 @@ export default function Player() {
     <div
       className="
         fixed bottom-0 left-0 right-0 z-50
-        h-[58px]
+        h-14.5
         border-t border-[#292d32]
         bg-[#0d0f12]
         text-white
@@ -29,12 +29,12 @@ export default function Player() {
       <div className="relative flex h-full items-center px-3">
 
 
-        <div className="flex items-center gap-[7px]">
+        <div className="flex items-center gap-1.75">
 
           <button
             onClick={() => setPlaying(!playing)}
             className={`
-              flex h-[36px] w-[36px]
+              flex h-9 w-9
               items-center justify-center
               rounded-[9px]
               border
@@ -56,7 +56,7 @@ export default function Player() {
           <button
             onClick={() => setPlaying(false)}
             className="
-              flex h-[36px] w-[36px]
+              flex  h-9 w-9
               items-center justify-center
               rounded-[9px]
               border border-[#292e34]
@@ -77,7 +77,7 @@ export default function Player() {
           <button
             onClick={() => setLoop(!loop)}
             className={`
-              flex h-[36px] w-[36px]
+              flex  h-9 w-9
               items-center justify-center
               rounded-[9px]
               border
@@ -107,19 +107,19 @@ export default function Player() {
               128
             </span>
 
-            <span className="ml-[7px] font-mono text-[9px] tracking-[1.5px] text-[#7d8188]">
+            <span className="ml-1.75 font-mono text-[9px] tracking-[1.5px] text-[#7d8188]">
               BPM
             </span>
           </div>
 
-          <div className="mx-[22px] h-[20px] w-px bg-[#292d32]" />
+          <div className="mx-5.5 h-5 w-px bg-[#292d32]" />
 
           <div className="font-mono text-[12px] tracking-[0.5px]">
             <span className="text-[#e0e2e5]">
               00:00.00
             </span>
 
-            <span className="mx-[10px] text-[#51555c]">
+            <span className="mx-2.5 text-[#51555c]">
               /
             </span>
 
@@ -129,9 +129,9 @@ export default function Player() {
           </div>
         </div>
 
-        <div className="ml-auto flex items-center gap-[18px]">
+        <div className="ml-auto flex items-center gap-4.5">
 
-          <div className="flex items-center gap-[8px]">
+          <div className="flex items-center gap-2">
 
             <Volume2
               size={13}
@@ -139,7 +139,7 @@ export default function Player() {
               className="text-[#777b82]"
             />
 
-            <div className="relative h-[4px] w-[111px]">
+            <div className="relative h-1 w-27.75">
               <div className="absolute inset-0 rounded-full bg-[#164b3f]" />
 
               <div
@@ -159,9 +159,9 @@ export default function Player() {
                 }
                 className="
                   absolute
-                  -top-[6px]
+                  -top-1.5
                   left-0
-                  h-[16px]
+                  h-4
                   w-full
                   cursor-pointer
                   appearance-none
@@ -169,9 +169,9 @@ export default function Player() {
 
                   [&::-webkit-slider-runnable-track]:bg-transparent
 
-                  [&::-webkit-slider-thumb]:mt-[-5px]
-                  [&::-webkit-slider-thumb]:h-[15px]
-                  [&::-webkit-slider-thumb]:w-[15px]
+                  [&::-webkit-slider-thumb]:-mt-1.25
+                  [&::-webkit-slider-thumb]:h-3.75
+                  [&::-webkit-slider-thumb]:w-3.75
                   [&::-webkit-slider-thumb]:appearance-none
                   [&::-webkit-slider-thumb]:rounded-full
                   [&::-webkit-slider-thumb]:border
@@ -180,8 +180,8 @@ export default function Player() {
 
                   [&::-moz-range-track]:bg-transparent
 
-                  [&::-moz-range-thumb]:h-[14px]
-                  [&::-moz-range-thumb]:w-[14px]
+                  [&::-moz-range-thumb]:h-3.5
+                  [&::-moz-range-thumb]:w-3.5
                   [&::-moz-range-thumb]:rounded-full
                   [&::-moz-range-thumb]:border
                   [&::-moz-range-thumb]:border-[#00b987]
@@ -190,12 +190,12 @@ export default function Player() {
               />
             </div>
 
-            <span className="w-[18px] font-mono text-[9px] text-[#777b82]">
+            <span className="w-4.5 font-mono text-[9px] text-[#777b82]">
               {volume}
             </span>
           </div>
 
-          <div className="flex items-center gap-[8px]">
+          <div className="flex items-center gap-2">
 
             <Cpu
               size={14}
@@ -203,7 +203,7 @@ export default function Player() {
               className="text-[#777b82]"
             />
 
-            <div className="relative h-[4px] w-[58px]">
+            <div className="relative h-1 w-14.5">
               <div className="absolute inset-0 rounded-full bg-[#292e34]" />
 
               <div
@@ -219,7 +219,7 @@ export default function Player() {
             </span>
           </div>
 
-          <div className="flex items-center gap-[6px]">
+          <div className="flex items-center gap-1.5">
 
             <LockKeyhole
               size={12}

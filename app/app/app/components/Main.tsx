@@ -105,27 +105,6 @@ export default function Main() {
     );
   }, [beats]);
 
-  useEffect(() => {
-    if (!playing) return;
-
-    const id = setInterval(() => {
-      setCurrent((prev) => {
-        const next = prev + 1;
-        if (next < STEPS) return next;
-        if (loop) return 0;
-
-        setPlaying(false);
-        return -1;
-      });
-    }, STEP_SECONDS * 1000);
-
-    return () => clearInterval(id);
-  }, [playing, loop]);
-
-  const stop = () => {
-    setPlaying(false);
-    setCurrent(-1);
-  };
 
   const toggleStep = (row: number, col: number) => {
     setSteps((prev) =>
@@ -167,7 +146,6 @@ export default function Main() {
             </button>
 
             <button
-              onClick={stop}
               className="flex h-9 w-9 items-center justify-center rounded-[9px] border border-[#292e34] bg-[#14171b] text-[#777c84] transition hover:border-[#3c4148] hover:text-white"
             >
               <Square size={11} fill="currentColor" />
@@ -175,7 +153,7 @@ export default function Main() {
 
             <button
               onClick={() => setLoop(!loop)}
-              className={`flex h-[36px] w-[36px] items-center justify-center rounded-[9px] border transition ${
+              className={`flex h-9 w-9 items-center justify-center rounded-[9px] border transition ${
                 loop
                   ? "border-[#009e77] bg-[#09342a] text-[#00d99b]"
                   : "border-[#292e34] bg-[#14171b] text-[#73777e]"
@@ -184,24 +162,24 @@ export default function Main() {
               <Repeat2 size={16} strokeWidth={1.6} />
             </button>
 
-            <button className="flex h-[36px] w-[36px] items-center justify-center rounded-[9px] border border-[#292e34] bg-[#14171b] text-[#73777e] hover:text-white">
+            <button className="flex h-9 w-9 items-center justify-center rounded-[9px] border border-[#292e34] bg-[#14171b] text-[#73777e] hover:text-white">
               <Timer size={15} strokeWidth={1.5} />
             </button>
           </div>
 
           <div className="flex items-center gap-1">
-            <div className="flex h-[30px] items-center rounded-[9px] border border-[#292e34] bg-[#15181c] px-[10px] font-mono text-[9px] text-[#b4b7bc]">
+            <div className="flex h-7.5 items-center rounded-[9px] border border-[#292e34] bg-[#15181c] px-2.5 font-mono text-[9px] text-[#b4b7bc]">
               {ROWS} × {STEPS}
             </div>
 
             <button
               onClick={clearAll}
-              className="ml-2 flex h-[30px] items-center rounded-[8px] border border-[#292d32] bg-[#15181c] px-[10px] text-[10px] text-[#8a8e95] transition hover:text-white"
+              className="ml-2 flex h-7.5 items-center rounded-lg border border-[#292d32] bg-[#15181c] px-2.5 text-[10px] text-[#8a8e95] transition hover:text-white"
             >
               Clear
             </button>
 
-            <button className="ml-1 flex h-[30px] w-[30px] items-center justify-center rounded-[8px] border border-[#292d32] bg-[#15181c] text-[#686c74]">
+            <button className="ml-1 flex h-7.5 w-7.5 items-center justify-center rounded-lg border border-[#292d32] bg-[#15181c] text-[#686c74]">
               <Search size={14} strokeWidth={1.5} />
             </button>
 
@@ -209,14 +187,14 @@ export default function Main() {
               100%
             </span>
 
-            <button className="flex h-[30px] w-[30px] items-center justify-center rounded-[8px] border border-[#292d32] bg-[#15181c] text-[#686c74]">
+            <button className="flex h-7.5 w-7.5 items-center justify-center rounded-lg border border-[#292d32] bg-[#15181c] text-[#686c74]">
               <ZoomIn size={14} strokeWidth={1.5} />
             </button>
           </div>
         </div>
 
-        <div className="mb-[6px] flex">
-          <div className="w-[145px] shrink-0" />
+        <div className="mb-1.5 flex">
+          <div className="w-36.25 shrink-0" />
 
           <div className="min-w-0 flex-1" style={GRID_STYLE}>
             {Array.from({ length: STEPS }).map((_, i) => (
@@ -236,15 +214,15 @@ export default function Main() {
           </div>
         </div>
 
-        <div className="max-h-[650px] space-y-[5px] overflow-y-auto overflow-x-hidden pr-1">
+        <div className="max-h-162.5 space-y-1.25 overflow-y-auto overflow-x-hidden pr-1">
           {steps.map((row, rowIndex) => {
             const track = tracks[rowIndex % tracks.length];
 
             return (
               <div key={rowIndex} className="flex items-center">
-                <div className="flex w-[145px] shrink-0 items-center gap-2">
+                <div className="flex w-36.25 shrink-0 items-center gap-2">
                   <span
-                    className={`h-[5px] w-[5px] shrink-0 rounded-full ${dotColors[track.color]}`}
+                    className={`h-1.25 w-1.25 shrink-0 rounded-full ${dotColors[track.color]}`}
                   />
 
                   <div className="min-w-0">
@@ -269,7 +247,7 @@ export default function Main() {
                         onClick={() => toggleStep(rowIndex, index)}
                         aria-label={`Row ${rowIndex + 1} ${track.name} step ${index + 1}`}
                         aria-pressed={active}
-                        className={`h-[34px] min-w-0 rounded-[6px] border transition-all ${
+                        className={`h-8.5 min-w-0 rounded-md border transition-all ${
                           active
                             ? colorClasses[track.color]
                             : isBeat(index)
@@ -296,9 +274,9 @@ function GeneratedBeatPlayer({ current }: { current: number }) {
   const ss = elapsed.toFixed(2).padStart(5, "0");
 
   return (
-    <section className="mt-6 mb-20 rounded-[12px] border border-[#292d32] bg-[#111417] p-[16px]">
-      <div className="mb-[14px] flex flex-wrap items-center justify-between gap-2">
-        <div className="flex items-center gap-[10px]">
+    <section className="mt-6 mb-20 rounded-xl border border-[#292d32] bg-[#111417] p-4">
+      <div className="mb-3.5 flex flex-wrap items-center justify-between gap-2">
+        <div className="flex items-center gap-2.5">
           <span className="text-[12px] font-medium text-[#e3e4e7]">
             Generated Beat
           </span>
@@ -308,7 +286,7 @@ function GeneratedBeatPlayer({ current }: { current: number }) {
           </span>
         </div>
 
-        <div className="flex items-center gap-[6px]">
+        <div className="flex items-center gap-1.5">
           <IconButton>
             <Volume2 size={15} strokeWidth={1.5} />
           </IconButton>
@@ -325,7 +303,7 @@ function GeneratedBeatPlayer({ current }: { current: number }) {
             Save Pattern
           </ActionButton>
 
-          <button className="flex h-[33px] items-center gap-2 rounded-[9px] border border-[#009d73] bg-[#08382c] px-[12px] text-[11px] text-[#00d99b] transition hover:bg-[#0a4638]">
+          <button className="flex h-8.25 items-center gap-2 rounded-[9px] border border-[#009d73] bg-[#08382c] px-3 text-[11px] text-[#00d99b] transition hover:bg-[#0a4638]">
             <Download size={13} />
             Export WAV
           </button>
@@ -334,7 +312,7 @@ function GeneratedBeatPlayer({ current }: { current: number }) {
 
       <Waveform current={current} />
 
-      <div className="mt-[11px] font-mono text-[9px] tracking-[1.2px] text-[#72767d]">
+      <div className="mt-2.75 font-mono text-[9px] tracking-[1.2px] text-[#72767d]">
         LOOP 1 → {STEPS} · {STEPS} STEPS
       </div>
     </section>
@@ -355,19 +333,19 @@ function Waveform({ current }: { current: number }) {
   ];
 
   return (
-    <div className="relative h-[104px] overflow-hidden rounded-[12px] border border-[#292e34] bg-[#191c22]">
+    <div className="relative h-26 overflow-hidden rounded-xl border border-[#292e34] bg-[#191c22]">
       <div
-        className="absolute inset-x-[12px] bottom-[22px] top-[10px]"
+        className="absolute inset-x-3 bottom-5.5 top-2.5"
         style={GRID_STYLE}
       >
         {Array.from({ length: STEPS }).map((_, step) => (
           <div
             key={step}
-            className={`flex min-w-0 items-center justify-between rounded-[4px] px-[1px] ${
+            className={`flex min-w-0 items-center justify-between rounded-sm px-px ${
               current === step
                 ? "bg-[#00d99b]/10"
                 : isBeat(step)
-                ? "bg-white/[0.025]"
+                ? "bg-white/2.5"
                 : ""
             }`}
           >
@@ -377,7 +355,7 @@ function Waveform({ current }: { current: number }) {
               return (
                 <div
                   key={b}
-                  className={`w-[2px] shrink-0 rounded-full ${
+                  className={`w-0.5 shrink-0 rounded-full ${
                     current === step ? "bg-[#00d99b]" : "bg-[#41464e]"
                   }`}
                   style={{ height: `${h}%` }}
@@ -389,7 +367,7 @@ function Waveform({ current }: { current: number }) {
       </div>
 
       <div
-        className="absolute inset-x-[12px] bottom-[5px] font-mono text-[8px] text-[#5c6068]"
+        className="absolute inset-x-3 bottom-1.25 font-mono text-[8px] text-[#5c6068]"
         style={GRID_STYLE}
       >
         {Array.from({ length: STEPS }).map((_, i) => (
