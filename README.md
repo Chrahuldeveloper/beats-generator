@@ -1,23 +1,12 @@
-# 🎵 AI Beat & Music Generator
+# 🎵 AI Beat Generator CLI
 
-An AI-powered music creation tool that turns natural-language descriptions into beats. Generate rhythms, experiment with 13 instruments, and edit patterns using an interactive beat sequencer.
+A Python-based CLI tool that uses PyTorch to generate beats from natural-language prompts. Experiment with 13 instruments, create rhythms, and export beats as WAV files directly from your terminal.
 
-## Features
-
-- AI-powered beat generation from text descriptions
-- 13 instruments for creating rhythms
-- Interactive beat sequencer and pattern editing
-- Beat playback and arrangement
+###  Features
+- AI-powered beat generation
+- 13 instruments
+- Audio mixing and WAV export
 - Song generation planned for future releases
 
-## 🛠️ Tech Stack
-
-- **Frontend:** Next.js, React, TypeScript
-- **Backend:** Python, FastAPI
-- **Machine Learning:** PyTorch
-
-## Getting Started
-
-Set up the frontend and backend using their respective dependencies and environment configurations.
-
-API documentation is available at `/docs` when the FastAPI backend is running.
+###  Tech Stack
+Python · PyTorch · NumPy · SoundFile
