@@ -9,4 +9,4 @@ A Python-based CLI tool that uses PyTorch to generate beats from natural-languag
 - Song generation planned for future releases
 
 ###  Tech Stack
-Python · PyTorch · NumPy · SoundFile
+Python · PyTorch · NumPy 
