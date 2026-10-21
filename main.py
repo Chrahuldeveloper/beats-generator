@@ -1,19 +1,15 @@
 import os
 import uuid
-from pathlib import Path
-
 import numpy as np
 import soundfile as sf
 import torch
 
-from scipy.signal import resample_poly
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from supabase import create_client
 from dotenv import load_dotenv
 
 from train import BeatGenerator
-
 
 load_dotenv()
 
@@ -63,12 +59,42 @@ SAMPLE_RATE = 44100
 BPM = 120
 
 
-def generate_audio(beat):
-    return beat
+def generate_audio(beats):
+   
+    print(beats)
+
+    step_time = 60 / BPM / 4
+
+    sounds = [sf.read(sound,dtype="float32"[0]) for sound in sound_paths]
+
+    sounds = [sound.mean(axis=0) if sound.ndim==2 else sound for sound in sounds]
+
+    output = np.zeros(
+        int(len(beats) * step_time * SAMPLE_RATE),
+        dtype=np.float32
+    )
+
+    for step, instruments in enumerate(beats):
+        start = int(step * step_time * SAMPLE_RATE)
+        for i, active in enumerate(instruments):
+            if active:
+                sound = sounds[i]
+                end = min(start + len(sound), len(output))
+                output[start:end] += sound[:end - start]
+
+        peak = np.max(np.abs(output))
+        if peak > 1:
+            output  = output / peak * 0.95
+            
+        sf.write("generated_beat.wav", output, SAMPLE_RATE)
+        
+        return "generated_beat.wav"
 
 
-@app.get("/get-beats")
-def generate_beats():
+
+@app.post("/get-beats")
+def generate_beats(prompt:str):
+    
     x = torch.tensor([
         [13230.0, 13235.89, 250.0, 0.12332411]
     ])
@@ -79,11 +105,11 @@ def generate_beats():
 
     beat = beat[0].cpu().numpy()
 
-    audio_path = generate_audio(beat)
+    audio = generate_audio(beat)
 
     file_name = f"{uuid.uuid4()}.wav"
 
-    with open(audio_path, "rb") as file:
+    with open(audio, "rb") as file:
         supabase.storage.from_("beats").upload(
             path=file_name,
             file=file,

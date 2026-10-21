@@ -18,12 +18,9 @@ const genres = [
 
 const modes = ["Full Beat", "Drum Pattern", "Bass Pattern", "Variation"];
 
-
-
 export default function SideBar() {
 
-  const {  setbeats } = useBeats()
-
+  const { setbeats } = useBeats()
 
   const [genre, setGenre] = useState("Trap");
   const [prompt, setPrompt] = useState(
@@ -40,9 +37,27 @@ export default function SideBar() {
 
   const generateBeat = async ()=>{
     try {
-      const getBeats = await axios.get("http://127.0.0.1:8000/get-beats")
-      setbeats(getBeats.data)
-      return getBeats.data
+
+    const response = await fetch(
+        "https://my-ai-worker.chrahulofficial.workers.dev/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            prompt: prompt
+          }),
+        }
+      );
+
+    const data = await response.json();
+
+    console.log(data);
+
+      // const getBeats = await axios.get("http://127.0.0.1:8000/get-beats")
+      // setbeats(getBeats.data)
+      // return getBeats.data
     } catch (error) {
       console.log(error)
     }
@@ -87,7 +102,6 @@ export default function SideBar() {
               focus:border-[#3b4447]
             "
           />
-
           <span className="absolute bottom-2 right-2.5 font-mono text-[8px] text-[#55595f]">
             96
           </span>
