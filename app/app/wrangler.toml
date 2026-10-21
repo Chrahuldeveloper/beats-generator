@@ -1,6 +1,0 @@
-name = "my-ai-worker"
-main = "app/ai/worker.js"
-compatibility_date = "2026-10-21"
-
-[ai]
-binding = "AI"

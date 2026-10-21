@@ -1,9 +1,5 @@
 # 🎵 AI Beat & Music Generator
 
-<p align="center">
-  <img src="images/banner.png" alt="AI Beat & Music Generator" width="100%" />
-</p>
-
 An AI-powered music creation tool that turns natural-language descriptions into beats. Generate rhythms, experiment with 13 instruments, and edit patterns using an interactive beat sequencer.
 
 ## Features
