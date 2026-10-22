@@ -4,7 +4,7 @@ from train import BeatGenerator
 import torch
 import random
 import sys
-
+import re
 
 
 def shuffel(sounds:list):
@@ -14,25 +14,23 @@ def shuffel(sounds:list):
     return sounds
 
 
-
-
-
-
-
-
 def main():
-
-
-    print(sys.argv)
 
     if len(sys.argv) < 3:
         print("Error: Missing arguments.", file=sys.stderr)
         print(f"Usage: playbeats  {sys.argv[0]} bpm energy")
         sys.exit(1)
+    
+    
+    match1 = re.search(r"\d+", sys.argv[1]) 
+    
+    match2 = re.search(r"\d+", sys.argv[2])
 
-
-    bpm = float(sys.argv[1])
-    energy = float(sys.argv[2])
+    if match1:
+        bpm = float(match1.group())
+    if match2:
+        energy = float(match2.group())
+    
     duration = float(random.randint(100,1000))
 
     model = BeatGenerator()
