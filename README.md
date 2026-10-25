@@ -1,12 +1,19 @@
-# 🎵 Cli Based AI Beat Generator 
+### Installation
 
-A Python-based CLI tool that uses PyTorch to generate beats. Experiment with 13 instruments, create rhythms, and export beats as WAV files directly from your terminal.
+```bash
+pip install playbeats
+```
 
-###  Features
-- AI-powered beat generation
-- 13 instruments
-- Audio mixing and WAV export
-- Song generation planned for future releases
+### Usage
 
-###  Tech Stack
-Python · PyTorch · NumPy 
+```bash
+playbeats --bpm=80 --energy=20
+```
+
+- `--bpm` — Set the beat tempo.
+- `--energy` — Set the beat energy.
+
+### Stop Playback
+
+Press `Ctrl+C` to stop playback.
+
