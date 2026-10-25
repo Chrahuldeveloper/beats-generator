@@ -1,6 +1,14 @@
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "playbeats"
-version = "0.0.1"
+version = "0.1.0"
+description = "Generate neural-network-powered beats from your terminal"
+readme = "README.md"
+requires-python = ">=3.10"
 dependencies = [
     "pygame",
     "torch",
@@ -15,3 +23,6 @@ py-modules = ["train"]
 
 [tool.setuptools.packages.find]
 include = ["src*"]
+
+[tool.setuptools.package-data]
+src = ["assets/*.pth", "assets/sounds/*.wav"]

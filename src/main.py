@@ -6,6 +6,9 @@ import random
 import sys
 import re
 
+from pathlib import Path
+
+ASSETS = Path(__file__).resolve().parent / "assets"
 
 def shuffel(sounds:list):
     for i in range(len(sounds) -1,0,-1):
@@ -14,7 +17,7 @@ def shuffel(sounds:list):
     return sounds
 
 
-def main():
+def main(): 
 
     if len(sys.argv) < 3:
         print("Error: Missing arguments.", file=sys.stderr)
@@ -36,12 +39,14 @@ def main():
     model = BeatGenerator()
 
     state_dict = torch.load(
-            "../beat_generator.pth",
-            map_location="cpu",
-            weights_only=True
-        )
+        ASSETS / "beat_generator.pth",
+        map_location="cpu",
+        weights_only=True
+    )
+
 
     model.load_state_dict(state_dict)
+    
     model.eval()
 
     x = torch.tensor([[bpm, duration, 44100, energy]])
@@ -52,19 +57,22 @@ def main():
 
     pygame.mixer.init()
 
-    kick = pygame.mixer.Sound("../sounds/KICK.wav")
-    snare = pygame.mixer.Sound("../sounds/SNARE.wav")
-    sample = pygame.mixer.Sound("../sounds/SAMPLE.wav")
-    hihat = pygame.mixer.Sound("../sounds/HIHAT.wav")
-    bass = pygame.mixer.Sound("../sounds/bass.wav")
-    tom_mid = pygame.mixer.Sound("../sounds/tom-mid.wav")
-    tom_high = pygame.mixer.Sound("../sounds/tom-high.wav")
-    tom_low = pygame.mixer.Sound("../sounds/tom-low.wav")
-    closed_hithat = pygame.mixer.Sound("../sounds/closed-hihat.wav")
-    open_hihat = pygame.mixer.Sound("../sounds/openhihat.wav")
-    tambourine = pygame.mixer.Sound("../sounds/tambourine.wav")
-    bongo = pygame.mixer.Sound("../sounds/bongo.wav")
-    clap = pygame.mixer.Sound("../sounds/clap.wav")
+
+    sounds_dir = ASSETS / "sounds"
+
+    kick = pygame.mixer.Sound(str(sounds_dir / "KICK.wav"))
+    snare = pygame.mixer.Sound(str(sounds_dir / "SNARE.wav"))
+    sample = pygame.mixer.Sound(str(sounds_dir / "SAMPLE.wav"))
+    hihat = pygame.mixer.Sound(str(sounds_dir / "HIHAT.wav"))
+    bass = pygame.mixer.Sound(str(sounds_dir / "bass.wav"))
+    tom_mid = pygame.mixer.Sound(str(sounds_dir / "tom-mid.wav"))
+    tom_high = pygame.mixer.Sound(str(sounds_dir / "tom-high.wav"))
+    tom_low = pygame.mixer.Sound(str(sounds_dir / "tom-low.wav"))
+    closed_hithat = pygame.mixer.Sound(str(sounds_dir / "closed-hihat.wav"))
+    open_hihat = pygame.mixer.Sound(str(sounds_dir / "openhihat.wav"))
+    tambourine = pygame.mixer.Sound(str(sounds_dir / "tambourine.wav"))
+    bongo = pygame.mixer.Sound(str(sounds_dir / "bongo.wav"))
+    clap = pygame.mixer.Sound(str(sounds_dir / "clap.wav"))
 
     instruments = [
         bass,          
