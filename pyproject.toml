@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "playbeats"
-version = "0.1.0"
+version = "0.1.1"
 description = "Generate neural-network-powered beats from your terminal"
 readme = "README.md"
 requires-python = ">=3.10"
